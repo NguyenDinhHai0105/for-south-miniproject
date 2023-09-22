@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-forsouth-deployment
+spec:
+  replicas: 2
+  selector:
+     matchLabels:
+      app: forsouth-label
+  template:
+    metadata:
+      labels:
+        app: forsouth-label
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-forsouth-service
+spec:
+  selector:
+    app: forsouth-label
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-forsouth-configmap
+data:
+  MONGO-DATABASE: "mydb"
+  MONGO-OPTION: "retryWrites=true&w=majority"
+  MONGO-CLUSTER: "cluster-dev-cua-hai.cas62pr.mongodb.net"
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: my-forsouth-secret
+data:
+  MONGO-USERNAME: "aGFpaG9sbWVzOTk="
+  MONGO-PASSWORD: "ZGl0bWV3aUJ1"
