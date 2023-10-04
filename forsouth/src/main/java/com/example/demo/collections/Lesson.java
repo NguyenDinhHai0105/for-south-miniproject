@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,6 +19,7 @@ public class Lesson {
     private String title;
     private String imageUrl;
     private String detail;
+    private List<LessonPart> lessonParts;
 
     @CreatedDate
     private Date createdDate;

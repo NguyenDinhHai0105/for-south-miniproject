@@ -21,7 +21,7 @@ public class Topic {
     private String id;
     @NotNull
     private String name;
-    private List<Technology> technologies;
+    private List<String> technologyIds;
     @CreatedDate
     private Date createdDate = new Date();
     @LastModifiedDate

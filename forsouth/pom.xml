@@ -82,6 +82,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>for-south</finalName>
 	</build>
 
 </project>

@@ -30,7 +30,7 @@ public class TopicServiceImpl implements TopicService {
                 () -> new ResourceNotFoundException(ExceptionMessage.ID_NOT_FOUND + topic.getId())
         );
         existingTopic.setName(topic.getName());
-        existingTopic.setTechnologies(topic.getTechnologies());
+        existingTopic.setTechnologyIds(topic.getTechnologyIds());
         existingTopic.setLastModifiedDate(topic.getLastModifiedDate());
         topicRepository.save(existingTopic);
         return existingTopic;

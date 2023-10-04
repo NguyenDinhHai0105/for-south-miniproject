@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-forsouth-deployment
+  name: forsouth-deployment
 spec:
   replicas: 2
   selector:
@@ -13,37 +13,67 @@ spec:
         app: forsouth-label
     spec:
       containers:
-        - name: nginx
-          image: nginx
+        - name: forsouth
+          image: docker30041999/forsouth:0.1
           ports:
-            - containerPort: 80
+            - containerPort: 8080
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: MONGO-USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: forsouth-secret
+                  key: MONGO-USERNAME
+            - name: MONGO-PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: forsouth-secret
+                  key: MONGO-PASSWORD
+            - name: MONGO-CLUSTER
+              valueFrom:
+                configMapKeyRef:
+                  key: MONGO-CLUSTER
+                  name: forsouth-configmap
+            - name: MONGO-OPTION
+              valueFrom:
+                configMapKeyRef:
+                  key: MONGO-OPTION
+                  name: forsouth-configmap
+            - name: MONGO-DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  key: MONGO-DATABASE
+                  name: forsouth-configmap
+
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-forsouth-service
+  name: forsouth-service
 spec:
   selector:
     app: forsouth-label
   ports:
     - protocol: TCP
-      port: 80
+      port: 8080
       targetPort: 8080
+  type: LoadBalancer
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: my-forsouth-configmap
+  name: forsouth-configmap
 data:
-  MONGO-DATABASE: "mydb"
-  MONGO-OPTION: "retryWrites=true&w=majority"
-  MONGO-CLUSTER: "cluster-dev-cua-hai.cas62pr.mongodb.net"
+  MONGO-DATABASE: 'mydb'
+  MONGO-OPTION: 'retryWrites=true&w=majority'
+  MONGO-CLUSTER: 'cluster-dev-cua-hai.cas62pr.mongodb.net'
 
 ---
 apiVersion: v1
 kind: Secret
 metadata:
-  name: my-forsouth-secret
+  name: forsouth-secret
+type: Opaque
 data:
-  MONGO-USERNAME: "aGFpaG9sbWVzOTk="
-  MONGO-PASSWORD: "ZGl0bWV3aUJ1"
+  MONGO-USERNAME: 'aGFpaG9sbWVzOTk='
+  MONGO-PASSWORD: 'ZGl0bWV3aUJ1'
