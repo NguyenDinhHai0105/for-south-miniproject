@@ -8,7 +8,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.List;
 
 @Getter
 @Setter
@@ -22,7 +21,6 @@ public class Topic {
     @NotNull
     private String name;
     private String description;
-    private List<String> technologyIds;
     @CreatedDate
     private LocalDate createdDate = LocalDate.now();
     @LastModifiedDate

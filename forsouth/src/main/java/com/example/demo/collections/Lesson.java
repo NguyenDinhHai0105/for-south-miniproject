@@ -19,6 +19,7 @@ public class Lesson {
     private String title;
     private String imageUrl;
     private String detail;
+    private String catalogueId;
     private List<LessonPart> lessonParts;
 
     @CreatedDate

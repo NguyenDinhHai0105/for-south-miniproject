@@ -38,7 +38,7 @@ public class TopicServiceImpl implements TopicService {
 
     @Override
     public void deleteTopic(String id) {
-        if(id == null) {
+        if (id == null) {
           topicRepository.deleteAll();
         } else {
         topicRepository.findById(id).orElseThrow(

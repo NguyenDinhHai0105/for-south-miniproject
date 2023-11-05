@@ -37,6 +37,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests(authorize -> {
             authorize
                 .antMatchers(HttpMethod.GET, "/api/v1/topic/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/v1/technology/**").permitAll()
                 .anyRequest()
                 .authenticated();
             });

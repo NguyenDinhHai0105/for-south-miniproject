@@ -17,7 +17,7 @@ public class Catalogue {
     @Id
     private String id;
     private String name;
-    private List<String> lessonIds;
+    private String technologyId;
 
     @CreatedDate
     private Date createdDate;
