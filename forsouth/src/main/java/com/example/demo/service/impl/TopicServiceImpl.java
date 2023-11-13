@@ -14,9 +14,12 @@ import java.util.UUID;
 @Service
 public class TopicServiceImpl implements TopicService {
 
+    private TopicRepository topicRepository;
 
     @Autowired
-    TopicRepository topicRepository;
+    public TopicServiceImpl(TopicRepository topicRepository) {
+        this.topicRepository = topicRepository;
+    }
 
     @Override
     public void addTopic(Topic topic) {

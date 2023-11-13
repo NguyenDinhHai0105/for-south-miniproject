@@ -14,8 +14,12 @@ import java.util.UUID;
 @Service
 public class TechnologyServiceImpl implements TechnologyService {
 
+    private TechnologyRepository technologyRepository;
+
     @Autowired
-    TechnologyRepository technologyRepository;
+    public TechnologyServiceImpl(TechnologyRepository technologyRepository) {
+        this.technologyRepository = technologyRepository;
+    }
 
     @Override
     public void addTechnology(Technology technology) {

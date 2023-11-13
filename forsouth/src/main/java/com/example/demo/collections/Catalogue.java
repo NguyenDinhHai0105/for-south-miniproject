@@ -3,10 +3,10 @@ package com.example.demo.collections;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -20,5 +20,20 @@ public class Catalogue {
     private String technologyId;
 
     @CreatedDate
-    private Date createdDate;
+    private LocalDate createdDate = LocalDate.now();
+    @LastModifiedDate
+    private LocalDate lastModifiedDate = LocalDate.now();
+
+    public void setName(String name) {
+        if (name != null) {
+            this.name = name;
+        }
+    }
+
+    public void setTechnologyId(String technologyId) {
+        if (technologyId != null) {
+            this.technologyId = technologyId;
+        }
+    }
+
 }

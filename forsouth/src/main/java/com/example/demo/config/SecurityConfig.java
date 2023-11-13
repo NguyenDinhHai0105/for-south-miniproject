@@ -38,6 +38,8 @@ public class SecurityConfig {
             authorize
                 .antMatchers(HttpMethod.GET, "/api/v1/topic/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/v1/technology/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/v1/catalogue/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/v1/lesson/**").permitAll()
                 .anyRequest()
                 .authenticated();
             });
