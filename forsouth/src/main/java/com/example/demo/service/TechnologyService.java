@@ -9,5 +9,5 @@ public interface TechnologyService {
     Technology updateTechnology(Technology technology);
     void deleteTechnology(String id);
     Technology getTechnologyById(String id);
-    List<Technology> getAllTechnology();
+    List<Technology> getAllTechnologyByTopicId(String id);
 }

@@ -18,7 +18,7 @@ import java.util.Map;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/api/v1/topic")
+@RequestMapping("/api/v1/topics")
 public class TopicController {
 
     @Autowired

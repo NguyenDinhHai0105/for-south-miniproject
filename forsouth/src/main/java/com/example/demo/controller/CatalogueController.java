@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/api/v1/catalogue")
+@RequestMapping("/api/v1/catalogues")
 public class CatalogueController {
 
     private CatalogueService catalogueServiceImpl;

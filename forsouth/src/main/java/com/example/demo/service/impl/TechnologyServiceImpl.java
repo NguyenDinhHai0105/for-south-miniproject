@@ -59,7 +59,7 @@ public class TechnologyServiceImpl implements TechnologyService {
     }
 
     @Override
-    public List<Technology> getAllTechnology() {
-        return technologyRepository.findAll();
+    public List<Technology> getAllTechnologyByTopicId(String topicId) {
+        return technologyRepository.findAllByTopicId(topicId);
     }
 }

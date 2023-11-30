@@ -17,7 +17,7 @@ import java.util.Map;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/api/v1/technology")
+@RequestMapping("/api/v1/technologies")
 public class TechnologyController {
     @Autowired
     TechnologyService technologyService;
@@ -44,14 +44,14 @@ public class TechnologyController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/{technologyId}")
-    public ResponseEntity<Technology> getTechnologyById(@PathVariable @NotNull String technologyId) {
-        return new ResponseEntity<>(technologyService.getTechnologyById(technologyId), HttpStatus.OK);
-    }
+//    @GetMapping("/{technologyId}")
+//    public ResponseEntity<Technology> getTechnologyById(@PathVariable @NotNull String technologyId) {
+//        return new ResponseEntity<>(technologyService.getTechnologyById(technologyId), HttpStatus.OK);
+//    }
 
-    @GetMapping
-    public ResponseEntity<List<Technology>> getAllTechnology() {
-        return new ResponseEntity<>(technologyService.getAllTechnology(), HttpStatus.OK);
+    @GetMapping("/technologies-by-topic-id/{topicId}")
+    public ResponseEntity<List<Technology>> getAllTechnologyByTopicId(@PathVariable String topicId) {
+        return new ResponseEntity<>(technologyService.getAllTechnologyByTopicId(topicId), HttpStatus.OK);
     }
 
 }
