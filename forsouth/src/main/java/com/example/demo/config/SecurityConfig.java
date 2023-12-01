@@ -36,10 +36,10 @@ public class SecurityConfig {
         http.cors(Customizer.withDefaults());
         http.authorizeHttpRequests(authorize -> {
             authorize
-                .antMatchers(HttpMethod.GET, "/api/v1/topic/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/v1/technology/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/v1/catalogue/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/v1/lesson/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/v1/topics/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/v1/technologies/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/v1/catalogues/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/v1/lessons/**").permitAll()
                 .anyRequest()
                 .authenticated();
             });
