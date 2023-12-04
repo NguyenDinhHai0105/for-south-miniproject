@@ -1,9 +1,10 @@
-package com.example.demo.repositories;
-
-import com.example.demo.collections.Lesson;
-import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.stereotype.Repository;
-
-@Repository
-public interface LessonRepository extends MongoRepository<Lesson, String> {
-}
+//package com.example.demo.repositories;
+//
+//import com.example.demo.collections.Lesson;
+//import org.springframework.data.mongodb.repository.MongoRepository;
+//import org.springframework.stereotype.Repository;
+//
+//@Repository
+//public interface LessonRepository extends MongoRepository<Lesson, String> {
+//}
+//

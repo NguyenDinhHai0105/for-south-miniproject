@@ -16,7 +16,8 @@ import java.time.LocalDate;
 public class Catalogue {
     @Id
     private String id;
-    private String name;
+    private String title;
+    private String htmlContent;
     private String technologyId;
 
     @CreatedDate
@@ -24,15 +25,21 @@ public class Catalogue {
     @LastModifiedDate
     private LocalDate lastModifiedDate = LocalDate.now();
 
-    public void setName(String name) {
-        if (name != null) {
-            this.name = name;
+    public void setTitle(String title) {
+        if (title != null) {
+            this.title = title;
         }
     }
 
     public void setTechnologyId(String technologyId) {
         if (technologyId != null) {
             this.technologyId = technologyId;
+        }
+    }
+
+    public void setHtmlContent(String htmlContent) {
+        if (htmlContent != null) {
+            this.htmlContent = htmlContent;
         }
     }
 

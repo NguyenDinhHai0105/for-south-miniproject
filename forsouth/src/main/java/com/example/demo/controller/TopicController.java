@@ -56,8 +56,8 @@ public class TopicController {
         return new ResponseEntity<>(topicService.getAllTopic(), HttpStatus.OK);
     }
 
-    @GetMapping("/test")
-    public String test() {
-        return "new sdbasijhdfbaidfiuasdf";
-    }
+//    @GetMapping("/test")
+//    public String test() {
+//        return "new sdbasijhdfbaidfiuasdf";
+//    }
 }

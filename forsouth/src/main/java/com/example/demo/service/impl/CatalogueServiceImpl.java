@@ -32,8 +32,9 @@ public class CatalogueServiceImpl implements CatalogueService {
         Catalogue existingCatalogue = catalogueRepository.findById(catalogue.getId()).orElseThrow(
                 () -> new ResourceNotFoundException(ExceptionMessage.ID_NOT_FOUND + catalogue.getId())
         );
-        existingCatalogue.setName(catalogue.getName());
+        existingCatalogue.setTitle(catalogue.getTitle());
         existingCatalogue.setTechnologyId(catalogue.getTechnologyId());
+        existingCatalogue.setHtmlContent(catalogue.getHtmlContent());
         existingCatalogue.setLastModifiedDate(catalogue.getLastModifiedDate());
         return existingCatalogue;
     }
@@ -57,4 +58,20 @@ public class CatalogueServiceImpl implements CatalogueService {
     public List<Catalogue> getAllCatalogue() {
         return catalogueRepository.findAll();
     }
+
+    @Override
+    public List<Catalogue> getCataloguesOfATechnology(String technologyId) {
+        return catalogueRepository.findAllByTechnologyId(technologyId).orElseThrow(
+                () -> new ResourceNotFoundException(ExceptionMessage.ID_NOT_FOUND + technologyId)
+        );
+    }
+
+    @Override
+    public List<Catalogue> getAllTitleAndIdOfCataloguesOfATechnology(String technologyId) {
+        return catalogueRepository.findTitleAndIdByTechnologyId(technologyId).orElseThrow(
+                () -> new ResourceNotFoundException(ExceptionMessage.ID_NOT_FOUND + technologyId)
+        );
+    }
+
+
 }

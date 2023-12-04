@@ -10,4 +10,7 @@ public interface CatalogueService {
     void deleteCatalogue(String id);
     Catalogue getCatalogueById(String id);
     List<Catalogue> getAllCatalogue();
+    List<Catalogue> getCataloguesOfATechnology(String technologyId);
+    List<Catalogue> getAllTitleAndIdOfCataloguesOfATechnology(String technologyId);
+
 }
