@@ -53,4 +53,11 @@ public class CatalogueController {
         List<Catalogue> catalogues = catalogueServiceImpl.getAllTitleAndIdOfCataloguesOfATechnology(technologyId);
         return new ResponseEntity<>(catalogues, HttpStatus.OK);
     }
+
+    @PutMapping()
+    @PreAuthorize("hasRole('admin')")
+    public ResponseEntity<Catalogue> updateCatalogue(@RequestBody Catalogue catalogue) {
+        Catalogue updatedCatalogue = this.catalogueServiceImpl.updateCatalogue(catalogue);
+        return new ResponseEntity<>(updatedCatalogue, HttpStatus.OK);
+    }
 }

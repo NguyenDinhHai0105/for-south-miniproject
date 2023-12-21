@@ -36,6 +36,7 @@ public class CatalogueServiceImpl implements CatalogueService {
         existingCatalogue.setTechnologyId(catalogue.getTechnologyId());
         existingCatalogue.setHtmlContent(catalogue.getHtmlContent());
         existingCatalogue.setLastModifiedDate(catalogue.getLastModifiedDate());
+        catalogueRepository.save(existingCatalogue);
         return existingCatalogue;
     }
 

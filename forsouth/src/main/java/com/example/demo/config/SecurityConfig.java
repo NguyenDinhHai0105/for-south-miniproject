@@ -14,7 +14,7 @@ import org.springframework.web.cors.CorsConfiguration;
 
 import java.util.List;
 
-@EnableWebSecurity(debug = true)
+//@EnableWebSecurity(debug = true)
 @Configuration
 @EnableMethodSecurity
 public class SecurityConfig {
