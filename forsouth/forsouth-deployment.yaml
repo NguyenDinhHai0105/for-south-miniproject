@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: forsouth-deployment
+  labels:
+    app: forsouth-app
 spec:
   replicas: 2
   selector:
@@ -14,7 +16,7 @@ spec:
     spec:
       containers:
         - name: forsouth
-          image: docker30041999/forsouth:0.1
+          image: docker30041999/forsouth:latest
           ports:
             - containerPort: 8080
           imagePullPolicy: IfNotPresent
