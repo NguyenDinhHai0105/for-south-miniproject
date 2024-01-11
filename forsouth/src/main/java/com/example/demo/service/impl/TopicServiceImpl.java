@@ -23,7 +23,7 @@ public class TopicServiceImpl implements TopicService {
 
     @Override
     public void addTopic(Topic topic) {
-//        topic.setId(UUID.randomUUID().toString().split("-")[0]);
+        topic.setId(UUID.randomUUID().toString().split("-")[0]);
         topicRepository.save(topic);
     }
 
