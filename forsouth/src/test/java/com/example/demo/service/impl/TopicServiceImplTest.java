@@ -1,6 +1,7 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.collections.Topic;
+import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repositories.TopicRepository;
 import com.example.demo.service.TopicService;
 import org.junit.jupiter.api.AfterEach;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.function.Executable;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -79,9 +81,9 @@ class TopicServiceImplTest {
 
     }
 
-    @DisplayName("Delete a topic successfully")
+    @DisplayName("Delete a topic or all topic successfully")
     @Test
-    void deleteTopic() {
+    void should_DeteleTopic_WithTopicId() {
         //given
         when(topicRepository.findById(TOPIC_ID)).thenReturn(Optional.ofNullable(topic));
 
@@ -95,10 +97,49 @@ class TopicServiceImplTest {
     }
 
     @Test
-    void getTopicById() {
+    @DisplayName("Test get topic successfully when given valid topic id")
+    void should_ReturnTopic_WhenGivenTopicId() {
+        //given
+        when(topicRepository.findById(TOPIC_ID)).thenReturn(Optional.ofNullable(topic));
+        
+        //when
+        Topic expectedTopic = topicServiceImpl.getTopicById(TOPIC_ID);
+        
+        //then
+        assertAll(
+                () -> assertEquals(expectedTopic.getId(), topic.getId()),
+                () -> assertEquals(expectedTopic.getName(), topic.getName()),
+                () -> assertEquals(expectedTopic.getDescription(), topic.getDescription()),
+                () -> assertEquals(expectedTopic.getCreatedDate(), topic.getCreatedDate()),
+                () -> assertEquals(expectedTopic.getLastModifiedDate(), topic.getLastModifiedDate())
+        );
     }
 
     @Test
+    @DisplayName("Test get topic not successfully when given an invalid topic id")
+    void should_ThrowException_WhenGivenInvalidTopicId() {
+        //given
+        String invalidTopicId = "DUMMY_ID";
+        when(topicRepository.findById(invalidTopicId)).thenReturn(Optional.empty());
+
+        //when
+        Executable executable = () -> topicServiceImpl.getTopicById(invalidTopicId);
+
+        //then
+        assertThrows(ResourceNotFoundException.class, executable);
+
+    }
+
+    @Test
+    @DisplayName("Test that get all topic successfully")
     void getAllTopic() {
+        //given
+
+        //when
+        topicServiceImpl.getAllTopic();
+
+        //then
+        verify(topicRepository, times(1)).findAll();
+
     }
 }
