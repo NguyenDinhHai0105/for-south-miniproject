@@ -14,9 +14,12 @@ import java.util.UUID;
 @Service
 public class TopicServiceImpl implements TopicService {
 
+    private TopicRepository topicRepository;
 
     @Autowired
-    TopicRepository topicRepository;
+    public TopicServiceImpl(TopicRepository topicRepository) {
+        this.topicRepository = topicRepository;
+    }
 
     @Override
     public void addTopic(Topic topic) {
@@ -30,7 +33,7 @@ public class TopicServiceImpl implements TopicService {
                 () -> new ResourceNotFoundException(ExceptionMessage.ID_NOT_FOUND + topic.getId())
         );
         existingTopic.setName(topic.getName());
-        existingTopic.setTechnologies(topic.getTechnologies());
+        existingTopic.setDescription(topic.getDescription());
         existingTopic.setLastModifiedDate(topic.getLastModifiedDate());
         topicRepository.save(existingTopic);
         return existingTopic;
@@ -38,7 +41,7 @@ public class TopicServiceImpl implements TopicService {
 
     @Override
     public void deleteTopic(String id) {
-        if(id == null) {
+        if (id == null) {
           topicRepository.deleteAll();
         } else {
         topicRepository.findById(id).orElseThrow(
